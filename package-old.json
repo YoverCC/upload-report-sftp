@@ -1,0 +1,46 @@
+{
+    "name": "cayre.puente-grabaciones-etiquetadas.cronjob",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "node build/src/main.js",
+      "start:ingestion": "node build/src/mainIngestion.js --max-old-space-size=4096 --nouse-idle-notification",
+      "start:upload": "node build/src/mainUploadToRepository.js ",
+      "postinstall": "npx prisma generate",
+      "clean": "rimraf coverage build tmp",
+      "build": "tsc -p tsconfig.json",
+      "build:release": "npm run clean && tsc -p tsconfig.release.json"
+    },
+    "engines": {
+      "node": ">= 20.9 < 21"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "dependencies": {
+      "@prisma/client": "^5.4.2",
+      "basic-ftp": "^5.0.3",
+      "dotenv": "^16.3.1",
+      "fast-csv": "^4.3.6",
+      "json2csv": "^6.0.0-alpha.2",
+      "moment": "^2.30.1",
+      "pino": "^8.16.0",
+      "tslib": "~2.6"
+    },
+    "devDependencies": {
+      "@types/node": "~20",
+      "@typescript-eslint/eslint-plugin": "~6.15",
+      "@typescript-eslint/parser": "~6.15",
+      "eslint": "~8.56",
+      "eslint-config-prettier": "~9.1",
+      "prettier": "~3.1",
+      "prisma": "^5.4.2",
+      "rimraf": "~5.0",
+      "ts-api-utils": "~1.0",
+      "ts-node": "^10.9.2",
+      "typescript": "~5.3"
+    }
+  }
+  
