@@ -7,7 +7,7 @@ export async function createCsvReport(folderPath: string, executionIdentifier: s
   const csvReportPath = `${folderPath}/${executionIdentifier}.csv`;
 
   // create csv report
-  console.log(reportData);
+  //console.log(reportData);
 
   // Convert JSON to CSV
   const csv = parse(reportData);
