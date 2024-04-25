@@ -7,7 +7,9 @@ export async function queryReport(reportName): Promise<report[]> {
   try {
 
     logger.info("Report: ", reportName);
-    var data = await prisma.$queryRaw<report[]>`${reportName}`;
+    //var data = await prisma.$queryRaw<report[]>`${reportName}`;
+    var data = [];
+    data = await prisma.$queryRaw`${reportName}`;
 
     if (data.length == 0) {
       logger.warn("Error retrieving report:", "No hay registros");

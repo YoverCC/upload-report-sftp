@@ -15,10 +15,12 @@ const sftpConfig = {
 const folderPath = process.env.LOCAL_TEMPORAL_DIRECTORY;
 const folderFailedPath = process.env.LOCAL_TEMPORAL_FAILED_DIRECTORY;
 
-export async function uploadToRepository(reportName) {
+export async function uploadToRepository(reportName, countryFolder) {
   logger.info('Starting uploadToRepository function');
 
   const report = await queryReport(reportName);
+
+  var folderCountry = process.env.REMOTE_SFTP_DIRECTORY + "/" + countryFolder;
 
   if (report.length === 0) {
     logger.info('No records to process');
@@ -47,7 +49,7 @@ export async function uploadToRepository(reportName) {
 
   const filename = executionIdentifier + ".csv";
   // copy all from local temp folder to remote folder
-  await uploadFolderToFTP(folderPath, folderFailedPath, filename, process.env.REMOTE_SFTP_DIRECTORY, sftpConfig)
+  await uploadFolderToFTP(folderPath, folderFailedPath, filename, folderCountry, sftpConfig)
 
   logger.info('uploadToRepository function completed');
 }
